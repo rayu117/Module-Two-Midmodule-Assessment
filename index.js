@@ -6,8 +6,10 @@ const myDice = {
     rollFive: "&#9860",
     rollSix: "&#9861",
 }
-
-function diceGame(){
+document.addEventListener("DOMContentLoaded", () => {
+let form = document.querySelector('form')
+form.addEventListener("submit", (event) => {
+    event.preventDefault()
 
 //set variable that equals the the number of dice the user wants to roll
 //get user input
@@ -57,30 +59,29 @@ while (userRoll > 0) {
     //i want to take the number value of each element in the object/array and change it to the right html entity value
     let view = document.getElementById('dice-para')
 
-    // let viewDice = diceList.map((elem) => {
-    //     return makeDice(elem)
-    // })
     view.innerHTML = viewList
 
     let diceSum = diceList.reduce((acc,el) => {
         return acc + el
     })
-    // let diceImage = diceList.forEach((elem) => {
-    //     if (elem === 1) {
-    //         return elem = 
-    //     }
-    // })
+   
     
     let screenSum =document.getElementById('sum-para')
     screenSum.textContent = `Sum= ${diceSum}`
+    if( userRoll ===0){
+//creating dice history list item
+// let historyDice = document.getElementById
+let diceHistory = document.createElement('li')
+diceHistory.innerHTML = `${viewList} Sum= ${diceSum}`
+form.appendChild(diceHistory)
+    }
 }
-
-}
-diceGame()
 
 function rollDice(){
     let roll = Math.floor((Math.random() * 6 ) + 1)
     return roll
 }
 
+})
 
+})
