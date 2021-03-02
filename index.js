@@ -1,15 +1,5 @@
-const myDice = {
-    rollOne: "&#9856",
-    rollTwo: "&#9857",
-    rollThree: "&#9858",
-    rollFour: "&#9859",
-    rollFive: "&#9860",
-    rollSix: "&#9861",
-}
-document.addEventListener("DOMContentLoaded", () => {
-let form = document.querySelector('form')
-form.addEventListener("submit", (event) => {
-    event.preventDefault()
+//SMART Goal: Refactor my code so after an hour of coding/debugging I have the dice emoji and their sum in the proper DOM element and the ul element will only be appended after the second click and appears under History
+
 
 //set variable that equals the the number of dice the user wants to roll
 //get user input
@@ -23,8 +13,22 @@ form.addEventListener("submit", (event) => {
 //append each roll to history
     //check number of clicks 
         //only append roll when number of clicks is greater than 1
-        //get the dice roll and the sume and make a variable to represent them
+            //add a second event listener to trigger after clicking
+        //get the dice roll and the sum and make a variable to represent them both as 1
             //element must be li
+
+const myDice = {
+    rollOne: "&#9856",
+    rollTwo: "&#9857",
+    rollThree: "&#9858",
+    rollFour: "&#9859",
+    rollFive: "&#9860",
+    rollSix: "&#9861",
+}
+document.addEventListener("DOMContentLoaded", () => {
+let form = document.querySelector('form')
+form.addEventListener("submit", (event) => {
+    event.preventDefault()
 
 let userRoll = document.getElementById('user-dice').value
 let diceList =[]
@@ -36,7 +40,7 @@ while (userRoll > 0) {
     newDice = rollDice()
     const makeDice = function (die) {
         //convert all numbers to html entities using if statements
-        if(die === 1) {
+        if (die === 1) {
             return myDice.rollOne 
         } else if (die === 2) {
             return myDice.rollTwo
@@ -52,29 +56,49 @@ while (userRoll > 0) {
     }
         viewList.push(makeDice(newDice))
 
-    
     diceList.push(newDice)
     userRoll--
-    console.log(diceList)
+    // console.log(diceList)
     //i want to take the number value of each element in the object/array and change it to the right html entity value
     let view = document.getElementById('dice-para')
 
-    view.innerHTML = viewList
+    view.innerHTML = viewList.join('')
 
     let diceSum = diceList.reduce((acc,el) => {
         return acc + el
     })
-   
     
     let screenSum =document.getElementById('sum-para')
     screenSum.textContent = `Sum= ${diceSum}`
     if( userRoll ===0){
 //creating dice history list item
 // let historyDice = document.getElementById
+//add eventlistener on the p element in history so that the dicehistory is appended there and only after click
+        //probably need to use target to get the dice history to appear after second click
+
 let diceHistory = document.createElement('li')
+
 diceHistory.innerHTML = `${viewList} Sum= ${diceSum}`
+
+// let dicePara = document.querySelector('#roll-history')
+
 form.appendChild(diceHistory)
+// makeDieHistory() **SMART goal change**
     }
+}
+
+//**SMART goal changes lines 91-101**
+// function makeDieHistory() {
+//     let newHistory = document.querySelector('#roll-history')
+//     roll-history.addEventListener('click', (event) =>{
+//         let diceHistory = document.createElement('li')
+
+// diceHistory.innerHTML = `${viewList} Sum= ${diceSum}`
+
+// // let dicePara = document.querySelector('#roll-history')
+
+// form.appendChild(diceHistory)
+    })
 }
 
 function rollDice(){
