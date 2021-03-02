@@ -83,21 +83,20 @@ diceHistory.innerHTML = `${viewList} Sum= ${diceSum}`
 // let dicePara = document.querySelector('#roll-history')
 
 form.appendChild(diceHistory)
-// makeDieHistory() **SMART goal change**
+// makeDieHistory() SMART goal change*
     }
 }
 
-//**SMART goal changes lines 91-101**
-// function makeDieHistory() {
-//     let newHistory = document.querySelector('#roll-history')
-//     roll-history.addEventListener('click', (event) =>{
-//         let diceHistory = document.createElement('li')
+function makeDieHistory() {
+    let newHistory = document.querySelector('#roll-history')
+    roll-history.addEventListener('click', (event) =>{
+        let diceHistory = document.createElement('li')
 
-// diceHistory.innerHTML = `${viewList} Sum= ${diceSum}`
+diceHistory.innerHTML = `${viewList} Sum= ${diceSum}`
 
-// // let dicePara = document.querySelector('#roll-history')
+// let dicePara = document.querySelector('#roll-history')
 
-// form.appendChild(diceHistory)
+form.appendChild(diceHistory)
     })
 }
 
